@@ -1,0 +1,13 @@
+<div class="list-container">
+
+@for (item of toDosSignal(); track $index) {
+  <app-todo-card [todo]="item"></app-todo-card>
+}
+
+<!-- <div>
+
+  <button class="button is-light">Back</button>
+  <button class="button is-primary">Next</button>
+</div> -->
+
+</div>
