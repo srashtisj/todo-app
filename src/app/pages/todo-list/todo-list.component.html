@@ -1,6 +1,16 @@
 <div class="list-container">
 
-@for (item of toDosSignal(); track $index) {
+  <div class="search-bar-container">
+    <div class="control has-icons-left has-icons-right">
+      <input class="input" type="text" placeholder="Filter" name="search" [(ngModel)]="searchText" #search>
+      <span class="icon is-small is-left">
+        <i class="fas fa-search"></i>
+      </span>
+    </div>
+  </div>
+
+
+@for (item of toDosSignal() | filter: searchText; track $index) {
   <app-todo-card [todo]="item"></app-todo-card>
 }
 

@@ -5,19 +5,21 @@ import { Observable, map, shareReplay, startWith } from 'rxjs';
 import { IToDosResponse } from '../../models/api/todos-response.model';
 import { NgFor } from '@angular/common';
 import { TodoCardComponent } from '../../components/todo-card/todo-card.component';
+import { FilterPipe } from '../../pipes/filter.pipe';
+import { FormsModule } from '@angular/forms';
 
 
 @Component({
   selector: 'app-todo-list',
   standalone: true,
-  imports: [NgFor, TodoCardComponent],
+  imports: [NgFor, TodoCardComponent, FilterPipe, FormsModule],
   templateUrl: './todo-list.component.html',
   styleUrl: './todo-list.component.scss'
 })
 export class TodoListComponent implements OnInit {
 
   toDos$! : Observable<IToDosResponse>;
-
+  searchText: string = '';
 
   constructor(private todoService:TodoService){
   }
@@ -39,7 +41,7 @@ export class TodoListComponent implements OnInit {
   toDosResponseSignal = toSignal(this.toDosResponse$)
 
   toDosSignal = computed(()=>{
-    return this.toDosResponseSignal()?.todos;
+    return this.toDosResponseSignal()!.todos;
   })
 
   ngOnInit(): void {
