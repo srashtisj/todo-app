@@ -1,5 +1,9 @@
 <div class="list-container">
 
+  <div class="buttons">
+    <button class="button is-primary" (click)="onAddTodo()">+ Add Todo</button>
+  </div>
+
   <div class="search-bar-container">
     <div class="control has-icons-left has-icons-right">
       <input class="input" type="text" placeholder="Filter" name="search" [(ngModel)]="searchText" #search>
@@ -11,7 +15,10 @@
 
 
 @for (item of toDosSignal() | filter: searchText; track $index) {
-  <app-todo-card [todo]="item"></app-todo-card>
+  <app-todo-card
+  [todo]="item"
+  (edit)="isActive = true; selectedTodo = item"
+  ></app-todo-card>
 }
 
 <!-- <div>
@@ -21,3 +28,10 @@
 </div> -->
 
 </div>
+
+<app-add-todo-modal
+  [isActive]="isActive"
+  [todo]="selectedTodo"
+  (changeIsActive)="isActive = $event"
+  (saveTodo)="onSave()"
+></app-add-todo-modal>

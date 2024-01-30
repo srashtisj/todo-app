@@ -7,12 +7,14 @@ import { NgFor } from '@angular/common';
 import { TodoCardComponent } from '../../components/todo-card/todo-card.component';
 import { FilterPipe } from '../../pipes/filter.pipe';
 import { FormsModule } from '@angular/forms';
+import { AddTodoModalComponent } from '../../components/add-todo-modal/add-todo-modal.component';
+import { IToDo } from '../../models/todo.model';
 
 
 @Component({
   selector: 'app-todo-list',
   standalone: true,
-  imports: [NgFor, TodoCardComponent, FilterPipe, FormsModule],
+  imports: [NgFor, TodoCardComponent, FilterPipe, FormsModule, AddTodoModalComponent],
   templateUrl: './todo-list.component.html',
   styleUrl: './todo-list.component.scss'
 })
@@ -20,6 +22,9 @@ export class TodoListComponent implements OnInit {
 
   toDos$! : Observable<IToDosResponse>;
   searchText: string = '';
+  isActive: boolean = false;
+
+  selectedTodo : IToDo = { id: 0, todo: ''} as IToDo;
 
   constructor(private todoService:TodoService){
   }
@@ -49,4 +54,16 @@ export class TodoListComponent implements OnInit {
 
   }
 
+  onAddTodo(){
+    this.selectedTodo = { id: 0, todo: ''} as IToDo;
+    this.isActive = true;
+  }
+
+  onSave(){
+    if(this.selectedTodo){
+
+    } else{
+      
+    }
+  }
 }

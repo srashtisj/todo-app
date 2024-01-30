@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { IToDo } from '../../models/todo.model';
 import { FormsModule } from '@angular/forms';
 import { TodoService } from '../../services/todo.service';
@@ -14,6 +14,7 @@ import { NgClass } from '@angular/common';
 export class TodoCardComponent {
 
   @Input('todo') todoItem! : IToDo;
+  @Output('edit') editTodo : EventEmitter<void> = new  EventEmitter<void>();
 
   constructor(private todoService:TodoService){}
   onChange(){

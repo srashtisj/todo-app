@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card" (click)="editTodo.emit()">
   <div class="card-content">
     <div class="content" >
       <label class="checkbox" [ngClass]="{'is-completed': todoItem.completed}">
