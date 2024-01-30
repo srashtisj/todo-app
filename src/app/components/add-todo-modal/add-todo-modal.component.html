@@ -1,0 +1,11 @@
+<div class="modal" [ngClass]="{'is-active': isActive}">
+  <div class="modal-background"></div>
+  <div class="modal-content">
+    <label>TODO:</label>
+    <textarea class="textarea" placeholder="e.g. Hello world" name="todo" [(ngModel)]="todo.todo"></textarea>
+
+    <button class="button is-primary is-pulled-right" (click)="onSave()">Save</button>
+
+  </div>
+  <button class="modal-close is-large" aria-label="close" (click)="isActive = false; changeIsActive.emit(false)"></button>
+</div>
